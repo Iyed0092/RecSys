@@ -1,38 +1,52 @@
-.App {
-  text-align: center;
+/* src/App.css - modern, compact UI for MovieLens frontend */
+:root{
+  --bg:#0b0f1a; --panel:#14212d; --muted:#9fb0c8; --accent:#7c3aed; --text:#e6eef8; --hover:rgba(255,255,255,0.05);
 }
+body{margin:0;font-family:Inter,system-ui,Arial;background:var(--bg);color:var(--text)}
+.app-root{max-width:1200px;margin:18px auto;padding:18px}
+.app-header{text-align:center;margin-bottom:12px}
+.app-grid{display:grid;grid-template-columns:380px 360px 360px;gap:18px}
+.panel{background:var(--panel);padding:14px;border-radius:12px;box-shadow:0 6px 18px rgba(2,6,23,0.6);transition:transform .2s,box-shadow .2s}
+.panel:hover{transform:translateY(-2px);box-shadow:0 10px 20px rgba(2,6,23,.7)}
+.muted{color:var(--muted)}
+.error{color:#ff6b6b}
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
+/* movie selector */
+.input{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.08);background:transparent;color:inherit;margin-bottom:8px}
+.movie-scroll{max-height:60vh;overflow-y:auto;border-radius:8px;border:1px solid rgba(255,255,255,0.04)}
+.movie-row{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid rgba(255,255,255,0.03);cursor:pointer}
+.movie-row:hover{background:var(--hover)}
+.movie-row.active{background:rgba(124,58,237,0.08)}
+.movie-row-left{display:flex;align-items:center}
+.thumb{width:44px;height:60px;background:rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;border-radius:6px;margin-right:12px}
+.meta .title{font-weight:700}
+.meta .genres{font-size:13px;color:var(--muted)}
+.selected-card{margin-top:12px;padding:10px;background:rgba(255,255,255,0.02);border-radius:8px;animation:fadeIn .28s ease}
+.rating-row{display:flex;align-items:center;gap:12px;margin-top:8px}
+.stars{display:flex;gap:6px}
+.star{cursor:pointer;transition:transform .12s}
+.star:hover{transform:scale(1.28)}
+.star.on{color:gold}
+.selected-actions{display:flex;gap:8px;margin-top:12px}
+.btn-primary{background:var(--accent);border:none;padding:8px 12px;border-radius:8px;color:#051226;cursor:pointer}
+.btn-primary:hover{background:#9a5cf1}
+.btn-clear{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:8px 10px;border-radius:8px;color:var(--muted);cursor:pointer}
+.btn-clear:hover{background:var(--hover)}
+.btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:6px 8px;border-radius:8px;color:var(--muted)}
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+/* watchlist */
+.watch-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid rgba(255,255,255,0.03)}
+.watch-title{font-weight:700}
+.btn-remove{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:6px 8px;border-radius:8px;color:var(--muted);cursor:pointer}
+.btn-remove:hover{background:var(--hover)}
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
+/* recommendations */
+.reco-item{display:flex;justify-content:space-between;align-items:center;padding:10px;border-bottom:1px solid rgba(255,255,255,0.03)}
+.reco-title{font-weight:700}
+.reco-score{font-weight:800}
 
-.App-link {
-  color: #61dafb;
-}
+/* animations */
+@keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
+/* responsive */
+@media (max-width:1100px){.app-grid{grid-template-columns:1fr} .panel{height:auto}}
